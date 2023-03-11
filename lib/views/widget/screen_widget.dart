@@ -33,7 +33,7 @@ class ScreenWidget extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 2,
+                flex: 4,
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -55,6 +55,7 @@ class ScreenWidget extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
+                      
                     ],
                   ),
                 ),

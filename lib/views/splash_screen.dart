@@ -36,14 +36,14 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(
               'assets/images/logo.png',
-              width: 120,
-              height: 120,
+              width: 140,
+              height: 140,
             ),
             const SizedBox(
               height: 50,
             ),
             TextWidget(
-              text: 'Chat Students',
+              text: 'Students Chat',
               color: AppColors.textColor2,
               size: 40,
               fontWeight: FontWeight.bold,

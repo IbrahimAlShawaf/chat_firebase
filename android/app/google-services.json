@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "146228639869",
+    "project_id": "chat-app-firebase-55fc8",
+    "storage_bucket": "chat-app-firebase-55fc8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146228639869:android:abf2b47ee4ed9f43a01914",
+        "android_client_info": {
+          "package_name": "com.borhom.chat_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146228639869-mvm57aaguout9km7v789lr9899igb64f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdFCR-G1dC4y6wWMtZ4zDB0fAilXHzvrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146228639869-mvm57aaguout9km7v789lr9899igb64f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

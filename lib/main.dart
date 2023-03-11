@@ -2,9 +2,12 @@ import 'package:chat_firebase/views/mymain_screen.dart';
 import 'package:chat_firebase/views/signin&signup/signin_screen.dart';
 import 'package:chat_firebase/views/signin&signup/signup_screen.dart';
 import 'package:chat_firebase/views/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -15,17 +18,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Students Chat',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: {
         '/': (context) => const SplashScreen(),
-       'MyMainScreen': (context) => const MyMainScreen(),
+        'MyMainScreen': (context) => const MyMainScreen(),
         'SignInScreen': (context) => const SignInScreen(),
         'SignUpScreen': (context) => const SignUpScreen(),
       },
     );
   }
 }
-
