@@ -1,3 +1,4 @@
+import 'package:chat_firebase/views/home_screen.dart';
 import 'package:chat_firebase/views/mymain_screen.dart';
 import 'package:chat_firebase/views/signin&signup/signin_screen.dart';
 import 'package:chat_firebase/views/signin&signup/signup_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         'MyMainScreen': (context) => const MyMainScreen(),
+        'MyHomeScreen': (context) => const MyHomePage(),
         'SignInScreen': (context) => const SignInScreen(),
         'SignUpScreen': (context) => const SignUpScreen(),
       },

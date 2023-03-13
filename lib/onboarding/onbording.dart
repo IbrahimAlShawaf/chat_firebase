@@ -72,7 +72,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                       onPressed: pageIndex == 2
                           ? () {
-                              Navigator.of(context).pushNamed('SignInScreen');
+                              Navigator.of(context).pushNamed('MyMainScreen');
                             }
                           : () {
                               pageController.nextPage(
@@ -99,7 +99,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   backgroundColor: AppColors.btnColor,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('SignInScreen');
+                  Navigator.of(context).pushNamed('MyMainScreen');
                 },
                 child: const Text(
                   'Skip',

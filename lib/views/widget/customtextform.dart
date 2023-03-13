@@ -4,7 +4,7 @@ class CustomTextForm extends StatelessWidget {
   final String hintext;
   final String labeltext;
   final IconData iconData;
-  final TextEditingController mycontroller;
+  final TextEditingController controller;
   final Function validator;
   final Function onSaved;
   final bool obscureText;
@@ -15,7 +15,7 @@ class CustomTextForm extends StatelessWidget {
     required this.hintext,
     required this.labeltext,
     required this.iconData,
-    required this.mycontroller,
+    required this.controller,
     required this.validator,
     required this.onSaved,
     required this.obscureText,
@@ -27,7 +27,7 @@ class CustomTextForm extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
-        controller: mycontroller,
+        controller: controller,
         keyboardType: keyboardType,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(

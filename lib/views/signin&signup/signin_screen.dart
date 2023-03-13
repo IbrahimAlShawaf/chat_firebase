@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -16,6 +18,20 @@ class _SignInScreenState extends State<SignInScreen> {
   final _passwordController = TextEditingController();
   late bool _rememberMe = false;
   late String _email, _password;
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim());
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         hintext: 'Enter Your Email',
                         labeltext: 'Email',
                         iconData: Icons.email_outlined,
-                        mycontroller: _emailController,
+                        controller: _emailController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your email';
@@ -72,7 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         hintext: 'Enter Your Password',
                         labeltext: 'Password',
                         iconData: Icons.lock_outline,
-                        mycontroller: _passwordController,
+                        controller: _passwordController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your password';
@@ -136,10 +152,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        Navigator.pushNamed(context, 'MyMainScreen');
-                      }
+                      signIn();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.indigo.shade600,

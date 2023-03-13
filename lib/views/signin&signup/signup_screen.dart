@@ -74,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Name',
                         labeltext: 'Name',
                         iconData: Icons.person_outline_outlined,
-                        mycontroller: _nameController,
+                        controller: _nameController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your name';
@@ -92,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Email',
                         labeltext: 'Email',
                         iconData: Icons.email_outlined,
-                        mycontroller: _emailController,
+                        controller: _emailController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your email';
@@ -110,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Mobile Number',
                         labeltext: 'Mobile',
                         iconData: Icons.call_outlined,
-                        mycontroller: _nameController,
+                        controller: _nameController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your mobile number';
@@ -128,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Password',
                         labeltext: 'Password',
                         iconData: Icons.lock_outline,
-                        mycontroller: _passwordController,
+                        controller: _passwordController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your password';
