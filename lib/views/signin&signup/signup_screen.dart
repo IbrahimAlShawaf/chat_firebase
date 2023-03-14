@@ -1,35 +1,21 @@
+import 'package:chat_firebase/controller/signUp_controller.dart';
+import 'package:chat_firebase/views/signin&signup/signin_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widget/customtextform.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _mobileController = TextEditingController();
-  @override
-  void dispose() {
-    super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _nameController.dispose();
-    _mobileController.dispose();
-  }
-
-  bool _rememberMe = false;
-
-  final _formKey = GlobalKey<FormState>();
-  late String email, password, name, mobile;
   @override
   Widget build(BuildContext context) {
+    SignUpController controller = Get.put(SignUpController());
+    final _formKey = GlobalKey<FormState>();
+    late String email, password, name, mobile;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -74,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Name',
                         labeltext: 'Name',
                         iconData: Icons.person_outline_outlined,
-                        controller: _nameController,
+                        controller: controller.name,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your name';
@@ -92,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Email',
                         labeltext: 'Email',
                         iconData: Icons.email_outlined,
-                        controller: _emailController,
+                        controller: controller.email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your email';
@@ -110,7 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Mobile Number',
                         labeltext: 'Mobile',
                         iconData: Icons.call_outlined,
-                        controller: _nameController,
+                        controller: controller.mobile,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your mobile number';
@@ -128,7 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintext: 'Enter Your Password',
                         labeltext: 'Password',
                         iconData: Icons.lock_outline,
-                        controller: _passwordController,
+                        controller: controller.password,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your password';
@@ -147,6 +133,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Center(
                   child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        SignUpController.signUpInstance.register(
+                          controller.email.text.trim(),
+                          controller.password.text.trim(),
+                        );
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.indigo.shade600,
                       fixedSize: const Size(260, 50),
@@ -161,11 +155,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, 'MyMainScreen');
-                      }
-                    },
                   ),
                 ),
                 const SizedBox(
@@ -195,7 +184,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('SignInScreen');
+                        // Navigator.of(context).pushNamed('SignInScreen');
+                        //Get.toNamed('/SignInScreen');
+                        Get.to(
+                          () =>  SignInScreen(),
+                          transition: Transition.leftToRightWithFade,
+                          duration: const Duration(seconds: 1),
+                        );
                       },
                     ),
                   ],

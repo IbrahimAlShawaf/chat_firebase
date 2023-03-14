@@ -1,4 +1,6 @@
+import 'package:chat_firebase/views/mymain_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../views/widget/app_color.dart';
 import '../views/widget/screen_widget.dart';
@@ -72,7 +74,12 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                       onPressed: pageIndex == 2
                           ? () {
-                              Navigator.of(context).pushNamed('MyMainScreen');
+                              //Navigator.of(context).pushNamed('MyMainScreen');
+                              Get.to(
+                                () => const MyMainScreen(),
+                                transition: Transition.rightToLeftWithFade,
+                                duration: const Duration(seconds: 1),
+                              );
                             }
                           : () {
                               pageController.nextPage(
@@ -99,7 +106,12 @@ class _OnBoardingState extends State<OnBoarding> {
                   backgroundColor: AppColors.btnColor,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('MyMainScreen');
+                  // Navigator.of(context).pushNamed('MyMainScreen');
+                  Get.to(
+                    () => const MyMainScreen(),
+                    transition: Transition.rightToLeftWithFade,
+                    duration: const Duration(seconds: 1),
+                  );
                 },
                 child: const Text(
                   'Skip',

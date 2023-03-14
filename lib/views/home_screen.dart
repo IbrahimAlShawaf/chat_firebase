@@ -1,5 +1,7 @@
+import 'package:chat_firebase/controller/Auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -9,6 +11,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  AuthController authController = Get.put(AuthController());
   final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
             onPressed: () {
-              FirebaseAuth.instance.signOut();
+              //FirebaseAuth.instance.signOut();
+              //AuthController.authInstance.logoutUser();
+              authController.logoutUser();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.indigo.shade600,

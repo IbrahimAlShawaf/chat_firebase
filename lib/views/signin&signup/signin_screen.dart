@@ -1,39 +1,22 @@
+import 'package:chat_firebase/views/signin&signup/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../controller/signIn_controller.dart';
+import '../../controller/signUp_controller.dart';
 import '../widget/customtextform.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  late bool _rememberMe = false;
-  late String _email, _password;
-
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    SignInController controller = Get.put(SignInController());
+    late String _email, _password;
+    final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -73,7 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         hintext: 'Enter Your Email',
                         labeltext: 'Email',
                         iconData: Icons.email_outlined,
-                        controller: _emailController,
+                        controller: controller.email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your email';
@@ -88,7 +71,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         hintext: 'Enter Your Password',
                         labeltext: 'Password',
                         iconData: Icons.lock_outline,
-                        controller: _passwordController,
+                        controller: controller.password,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Please enter your password';
@@ -104,18 +87,6 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(
                   height: 12,
-                ),
-                CheckboxListTile(
-                  title: const Text("Remember me"),
-                  value: _rememberMe,
-                  onChanged: (value) {
-                    setState(() {
-                      _rememberMe = value!;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +112,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.of(context).pushNamed('SignUpScreen');
+                        //  Navigator.of(context).pushNamed('SignUpScreen');
+                        //Get.toNamed('/SignUpScreen');
+                        Get.to(
+                          () => SignUpScreen(),
+                          transition: Transition.rightToLeftWithFade,
+                          duration: const Duration(seconds: 1),
+                        );
                       },
                     ),
                   ],
@@ -152,7 +129,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      signIn();
+                      if (_formKey.currentState!.validate()) {
+                        SignInController.signInInstance.login(
+                          controller.email.text.trim(),
+                          controller.password.text.trim(),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.indigo.shade600,

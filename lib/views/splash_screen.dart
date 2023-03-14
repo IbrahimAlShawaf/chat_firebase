@@ -1,8 +1,9 @@
+import 'package:chat_firebase/onboarding/onbording.dart';
 import 'package:chat_firebase/views/widget/app_color.dart';
 import 'package:chat_firebase/views/widget/app_text.dart';
+import 'package:chat_firebase/views/widget/assetsimages.dart';
 import 'package:flutter/material.dart';
-
-import '../onboarding/onbording.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,10 +19,13 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Add a delay to simulate loading time
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const OnBoarding(),
-        ),
+      
+
+      // Get.offNamed('/OnBoardingScreen');
+      Get.off(
+        () => const OnBoarding(),
+        transition: Transition.fade,
+        duration: const Duration(seconds: 1),
       );
     });
   }
@@ -34,8 +38,8 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/logo.png',
+            Image(
+              image: AppImage.logoImage,
               width: 140,
               height: 140,
             ),
